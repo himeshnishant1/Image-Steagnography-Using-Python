@@ -8,7 +8,7 @@ img = cv2.imread('original.jpeg')
 
 # Capturing the size of the Cover Image.
 height,width,pixels = img.shape
-print("height ",height,"\nwidth",width)
+# print("height ",height,"\nwidth",width)
 
 # Decimal to Binary convertor
 def dec2bin(dec):
@@ -62,7 +62,6 @@ for line in file.readlines():
 binary = ''
 key = ''
 key = input("Enter a numeric key of 4 digits.. ")
-print(key)
 count = 0
 tmp = ''
 while True:
@@ -71,7 +70,6 @@ while True:
         for i in range(len(key)):
             sum1 = sum1+ ord(key[i])
         key = str(dec2bin(sum1))
-        print(key)
         print("Converting Message to Binary and encrypting...")
         for pos in range(len(secret_message)):
             if ord(secret_message[pos]) <= 255:
