@@ -148,6 +148,8 @@ for i in range(height):
                 
         else:
             break;
-            
+
+len_binary
+steagno_img[height-20,width-20] = []          
 cv2.imwrite('steagno_image.png',steagno_img)
 print("\nWriting Successfull.\n")
