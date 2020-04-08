@@ -243,3 +243,4 @@ An image histogram is a bar chart that shows the distribution of
 intensities in an image. Fig. 3.1 is original image where as Fig. 3.2 is
 stego image. Fig. 3.3 and 3.4 show the color histograms of cover image
 and stego 
+The Input Validation Cheat Sheet is a great place to start when tackling how to best implement input validation. There are two basic ideas when dealing with input validation: whitelist and blacklist. Whitelist is when you only allow known values to enter the application. Just as important as restricting the input, the parameter is then checked on the server-side to ensure the value hasn’t been altered in an intercepting proxy. Some of the most popular web development frameworks already have this type of functionality built-in; .NET’s event validation for example: http://msdn.microsoft.com/enus/library/system.web.ui.page.enableeventvalidation.aspx. 

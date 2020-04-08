@@ -3,7 +3,7 @@ import numpy as np # For Mathematical funnctions.
 import cv2 # OpenCV.
 
 # Reading an Image through Opencv
-img = cv2.imread('original.jpeg')
+img = cv2.imread('original.png')
 # img = cv2.resize(img,(500,500))
 
 # Capturing the size of the Cover Image.
@@ -54,42 +54,18 @@ def XOR(data,key):
             enc_data = enc_data + '0'
     return enc_data
 
-# Secret Message into ASCII and ASCII into Binary format
-file = open('input.txt','r')
-secret_message = ''
-for line in file.readlines():
-    secret_message = secret_message + str(line)
-binary = ''
-key = ''
-key = input("Enter a numeric key of 4 digits.. ")
-count = 0
-tmp = ''
-while True:
-    if key.isnumeric() and (len(key) == 4):
-        sum1 = 0
-        for i in range(len(key)):
-            sum1 = sum1+ ord(key[i])
-        key = str(dec2bin(sum1))
-        print("Converting Message to Binary and encrypting...")
-        for pos in range(len(secret_message)):
-            if ord(secret_message[pos]) <= 255:
-                if count < 8:
-                    binary = binary + str(XOR(dec2bin(ord(secret_message[pos])),key)) # coverting Secret code into ASCII and ASCII into Encrypted Binary.
-                    count = count + 1
-                else:
-                    tmp = count = 0
-        print("\nMessage Conversion Successfull.\n")
-        #print("Binary Code = ",binary)
-        break;
-    else:
-        print("please enter only 4 numeric digits the key")
-        key = input("Enter a numeric key of 4 digits..")
+t = np.random.randint(2,size=(1999999))
+binary = ""
+for e in range(len(t)):
+    binary = binary + str(t[e])
         
 # Writing Changes to Cover Image and Generating a Steagnographed Image.
 len_binary = len(binary)
 print("text_length = ",len_binary)
 k = 0
 steagno_img = img # Initializing the steagno image with original image.
+
+hidden = 0
 
 for i in range(height):
     for j in range(width):
@@ -144,12 +120,12 @@ for i in range(height):
             g = np.uint8(bin2dec(bin_g))
             r = np.uint8(bin2dec(bin_r))
             steagno_img[i,j] = [b,g,r]
+            hidden = hidden + 1 
             #print(img[i,j],steagno_img[i,j])
                 
         else:
             break;
-
-len_binary
-steagno_img[height-20,width-20] = []          
+     
 cv2.imwrite('steagno_image.png',steagno_img)
 print("\nWriting Successfull.\n")
+print(hidden," bits written")
