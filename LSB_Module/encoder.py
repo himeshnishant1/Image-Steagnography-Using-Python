@@ -54,10 +54,36 @@ def XOR(data,key):
             enc_data = enc_data + '0'
     return enc_data
 
-t = np.random.randint(2,size=(1999999))
-binary = ""
-for e in range(len(t)):
-    binary = binary + str(t[e])
+# Secret Message into ASCII and ASCII into Binary format
+file = open('input.txt','r')
+secret_message = ''
+for line in file.readlines():
+    secret_message = secret_message + str(line)
+binary = ''
+key = ''
+key = input("Enter a numeric key of 4 digits.. ")
+count = 0
+tmp = ''
+while True:
+    if key.isnumeric() and (len(key) == 4):
+        sum1 = 0
+        for i in range(len(key)):
+            sum1 = sum1+ ord(key[i])
+        key = str(dec2bin(sum1))
+        print("Converting Message to Binary and encrypting...")
+        for pos in range(len(secret_message)):
+            if ord(secret_message[pos]) <= 255:
+                if count < 8:
+                    binary = binary + str(XOR(dec2bin(ord(secret_message[pos])),key)) # coverting Secret code into ASCII and ASCII into Encrypted Binary.
+                    count = count + 1
+                else:
+                    tmp = count = 0
+        print("\nMessage Conversion Successfull.\n")
+        #print("Binary Code = ",binary)
+        break;
+    else:
+        print("please enter only 4 numeric digits the key")
+        key = input("Enter a numeric key of 4 digits..")
         
 # Writing Changes to Cover Image and Generating a Steagnographed Image.
 len_binary = len(binary)
