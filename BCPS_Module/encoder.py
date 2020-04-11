@@ -137,7 +137,6 @@ img_r = np.zeros((height,width,1),np.uint8)
 
 sub_img = np.zeros((height,width,1),np.uint8)
 
-patched_loc_cpy = ''
 bit_coded = 0
 for color in range(3):
     for m in range(height):
