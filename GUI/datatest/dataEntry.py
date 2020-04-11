@@ -1,6 +1,6 @@
 from database import Database
 
-db = Database()
+conn = Database()
 
 print("Database application")
 while True:
@@ -14,10 +14,10 @@ while True:
         name = input("Name:")
         email = input("Email:")
         password = input("password :")
-        db.add(name, email,pWd)
+        conn.add(name, email, password)
         print("Done")
     elif option == '2':
-        data = db.view()
+        data = conn.view()
         for record in data:
             print(record)
     else:
