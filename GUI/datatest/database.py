@@ -2,7 +2,7 @@ import sqlite3
 
 class Database:
 
-    def __init__(self,name='D://db.sqlite3'):
+    def __init__(self,name='test.sqlite3'):
         self.db = sqlite3.connect(name)
         self.create_table()
 
@@ -16,23 +16,22 @@ class Database:
 
     def create_table(self):
         query = '''
-            create table detail (
-                id integer primary key autoincrement,
+            create table detail
+            (
                 name TEXT,
                 email TEXT,
-                pwd TEXT,
-            )
+                pwd TEXT
+            );
         '''
         return self.run(query)
 
-    def add(self,name,price,qty):
+    def add(self,name,email,pwd):
         query = f'''
-            insert into detail values(
-                null,
+            insert into detail(name,email,pwd) values(
                 '{name}',
                 '{email}',
                 '{pwd}'
-            )
+            );
         '''
         return self.run(query)
 
@@ -40,6 +39,7 @@ class Database:
         query = '''
             select * from detail
         '''
+
         data = self.run(query)
         if data:
             return data.fetchall()
