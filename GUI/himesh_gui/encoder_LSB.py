@@ -178,7 +178,5 @@ class Encoder_LSB:
         
         cv2.imwrite(steagnoimagefilename,stegano_img)
         progress_window.destroy()
+        
         return steagnoimagefilename
-
-#if __name__ == "__main__":
-#    Encoder_LSB.encoder_module(Encoder_LSB,"C:\\Users\\himes\\notebooks\\GUI\\himesh_gui\\stegano_image_BCPS.png",240,320,"hello world","7607")

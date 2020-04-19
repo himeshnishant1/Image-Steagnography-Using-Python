@@ -313,9 +313,6 @@ def _on_shiftmouse(event, widget):
         elif event.num == 5:
             widget.xview_scroll(1, 'units')
 
-if __name__ == '__main__':
-    vp_start_gui()
-
 
 
 

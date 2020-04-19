@@ -346,8 +346,5 @@ class Encoder_bcps:
                 sub += imagefilename[m]
         
         cv2.imwrite(steagnoimagefilename,stegano_img)
+        
         return steagnoimagefilename
-
-# Main function
-#if __name__ == "__main__":
-#    Encoder_bcps.encoder_module(Encoder_bcps,imagefilename = "C:\\Users\\himes\\notebooks\\cover_raw.png",textfilename = "hello world!!",key ="7607")
