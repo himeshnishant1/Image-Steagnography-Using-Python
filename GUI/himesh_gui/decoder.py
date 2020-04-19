@@ -11,45 +11,8 @@ from PIL import Image, ImageTk
 from tkinter import filedialog
 from decoder_BCPS import Decoder_BCPS
 from decoder_LSB import Decoder_LSB
-
-try:
-    import Tkinter as tk
-except ImportError:
-    import tkinter as tk
-
-try:
-    import ttk
-    py3 = False
-except ImportError:
-    import tkinter.ttk as ttk
-    py3 = True
-
-import decoder_support
-
-def vp_start_gui():
-    '''Starting point when module is the main routine.'''
-    global val, w, root
-    root = tk.Tk()
-    top = Toplevel1 (root)
-    decoder_support.init(root, top)
-    root.mainloop()
-
-w = None
-def create_Toplevel1(rt, *args, **kwargs):
-    '''Starting point when module is imported by another module.
-       Correct form of call: 'create_Toplevel1(root, *args, **kwargs)' .'''
-    global w, w_win, root
-    #rt = root
-    root = rt
-    w = tk.Toplevel (root)
-    top = Toplevel1 (w)
-    decoder_support.init(w, top, *args, **kwargs)
-    return (w, top)
-
-def destroy_Toplevel1():
-    global w
-    w.destroy()
-    w = None
+import tkinter as tk
+import tkinter.ttk as ttk
 
 class Toplevel1:
 
@@ -85,9 +48,11 @@ class Toplevel1:
         self.Canvas_input.image = ImageTk.PhotoImage(self.img_input_resize)
         self.Canvas_input.create_image(0, 0, image = self.Canvas_input.image, anchor = 'nw')
     
-    def __init__(self, top=None):
+    def __init__(self):
+
+        self.top = tk.Tk()
         '''This class configures and populates the toplevel window.
-           top is the toplevel containing window.'''
+           self.top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
         _compcolor = '#d9d9d9' # X11 color: 'gray85'
@@ -104,14 +69,14 @@ class Toplevel1:
         self.style.map('.',background=
             [('selected', _compcolor), ('active',_ana2color)])
 
-        top.geometry("1501x700+0+0")
-        top.minsize(148, 1)
-        top.maxsize(1924, 1055)
-        top.resizable(0, 0)
-        top.title("decoder")
-        top.configure(background="#d9d9d9")
+        self.top.geometry("1501x700+0+0")
+        self.top.minsize(148, 1)
+        self.top.maxsize(1924, 1055)
+        self.top.resizable(0, 0)
+        self.top.title("decoder")
+        self.top.configure(background="#d9d9d9")
 
-        self.TFrame_main = ttk.Frame(top)
+        self.TFrame_main = ttk.Frame(self.top)
         self.TFrame_main.place(relx=0.007, rely=0.014, relheight=0.979
                 , relwidth=0.989)
         self.TFrame_main.configure(relief='groove')
@@ -235,6 +200,7 @@ class Toplevel1:
         self.TLabel_message.configure(anchor='w')
         self.TLabel_message.configure(justify='left')
         self.TLabel_message.configure(text='''Secret Message''')
+        self.top.mainloop()
 
 # The following code is added to facilitate the Scrolled widgets you specified.
 class AutoScroll(object):
@@ -262,12 +228,9 @@ class AutoScroll(object):
         master.grid_columnconfigure(0, weight=1)
         master.grid_rowconfigure(0, weight=1)
         # Copy geometry methods of master  (taken from ScrolledText.py)
-        if py3:
-            methods = tk.Pack.__dict__.keys() | tk.Grid.__dict__.keys() \
+        methods = tk.Pack.__dict__.keys() | tk.Grid.__dict__.keys() \
                   | tk.Place.__dict__.keys()
-        else:
-            methods = tk.Pack.__dict__.keys() + tk.Grid.__dict__.keys() \
-                  + tk.Place.__dict__.keys()
+
         for meth in methods:
             if meth[0] != '_' and meth not in ('config', 'configure'):
                 setattr(self, meth, getattr(master, meth))
@@ -286,6 +249,7 @@ class AutoScroll(object):
 
     def __str__(self):
         return str(self.master)
+
 
 def _create_container(func):
     '''Creates a ttk Frame with a given master, and use this new frame to

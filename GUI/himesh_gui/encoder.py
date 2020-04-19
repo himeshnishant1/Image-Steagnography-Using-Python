@@ -9,39 +9,12 @@ import sys
 import os
 import tkinter as tk
 import tkinter.ttk as ttk
-import encoder_support
 from tkinter import filedialog
 from PIL import Image, ImageTk
 from encoder_bcps import Encoder_bcps
 from encoder_LSB import Encoder_LSB
 import matplotlib.pyplot as plt
 import cv2
-py3 = True
-
-def vp_start_gui():
-    '''Starting point when module is the main routine.'''
-    global val, w, root
-    root = tk.Tk()
-    top = Toplevel1 (root)
-    encoder_support.init(root, top)
-    root.mainloop()
-
-w = None
-def create_Toplevel1(rt, *args, **kwargs):
-    '''Starting point when module is imported by another module.
-       Correct form of call: 'create_Toplevel1(root, *args, **kwargs)' .'''
-    global w, w_win, root
-    #rt = root
-    root = rt
-    w = tk.Toplevel (root)
-    top = Toplevel1 (w)
-    encoder_support.init(w, top, *args, **kwargs)
-    return (w, top)
-
-def destroy_Toplevel1():
-    global w
-    w.destroy()
-    w = None
 
 class Toplevel1:
 
@@ -198,9 +171,11 @@ class Toplevel1:
             self.secret_msg = self.secret_msg + str(line)
         self.Scrolledtext_secretmsg.insert(tk.INSERT,self.secret_msg)
 
-    def __init__(self, top=None):
+    def __init__(self):
+
+        self.top = tk.Tk()
         '''This class configures and populates the toplevel window.
-           top is the toplevel containing window.'''
+           self.top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
         _compcolor = '#d9d9d9' # X11 color: 'gray85'
@@ -218,14 +193,14 @@ class Toplevel1:
         self.style.map('.',background=
             [('selected', _compcolor), ('active',_ana2color)])
 
-        top.geometry("1500x700+0+0")
-        top.minsize(148, 1)
-        top.maxsize(1924, 1055)
-        top.resizable(0, 0)
-        top.title("Encoder")
-        top.configure(background="#d9d9d9")
+        self.top.geometry("1500x700+0+0")
+        self.top.minsize(148, 1)
+        self.top.maxsize(1924, 1055)
+        self.top.resizable(0, 0)
+        self.top.title("Encoder")
+        self.top.configure(background="#d9d9d9")
 
-        self.main_frame = tk.Frame(top)
+        self.main_frame = tk.Frame(self.top)
         self.main_frame.place(relx=0.007, rely=0.014, relheight=0.98
                 , relwidth=0.991)
         self.main_frame.configure(relief='groove')
@@ -367,12 +342,12 @@ class Toplevel1:
 
         self.var_technique = tk.IntVar()
         self.var_technique.set(1)
-        self.R1 = tk.Radiobutton(top, text="LSB(Lowest Significant Bit)", variable=self.var_technique, value=1,
+        self.R1 = tk.Radiobutton(self.top, text="LSB(Lowest Significant Bit)", variable=self.var_technique, value=1,
                         command= "")
         self.R1.place(relx=0.680, rely=0.560, relwidth=0.110
                 , relheight=0.0, height = 22)
 
-        self.R2 = tk.Radiobutton(top, text="BCPS(Bit-Plane Complexity Segmentation)", variable=self.var_technique, value=2,
+        self.R2 = tk.Radiobutton(self.top, text="BCPS(Bit-Plane Complexity Segmentation)", variable=self.var_technique, value=2,
                         command= "")
         self.R2.place(relx=0.800, rely=0.560, relheight=0.0
                 , relwidth=0.165, height = 22)
@@ -666,8 +641,10 @@ class Toplevel1:
         self.Label_out_height1.configure(highlightbackground="#d9d9d9")
         self.Label_out_height1.configure(highlightcolor="black")
 
-        self.menubar = tk.Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
-        top.configure(menu = self.menubar)
+        self.menubar = tk.Menu(self.top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
+        self.top.configure(menu = self.menubar)
+        
+        self.top.mainloop()
 
 # The following code is added to facilitate the Scrolled widgets you specified.
 class AutoScroll(object):
@@ -695,12 +672,8 @@ class AutoScroll(object):
         master.grid_columnconfigure(0, weight=1)
         master.grid_rowconfigure(0, weight=1)
         # Copy geometry methods of master  (taken from ScrolledText.py)
-        if py3:
-            methods = tk.Pack.__dict__.keys() | tk.Grid.__dict__.keys() \
+        methods = tk.Pack.__dict__.keys() | tk.Grid.__dict__.keys() \
                   | tk.Place.__dict__.keys()
-        else:
-            methods = tk.Pack.__dict__.keys() + tk.Grid.__dict__.keys() \
-                  + tk.Place.__dict__.keys()
         for meth in methods:
             if meth[0] != '_' and meth not in ('config', 'configure'):
                 setattr(self, meth, getattr(master, meth))
@@ -781,10 +754,6 @@ def _on_shiftmouse(event, widget):
             widget.xview_scroll(-1, 'units')
         elif event.num == 5:
             widget.xview_scroll(1, 'units')
-
-if __name__ == '__main__':
-    vp_start_gui()
-
 
 
 
