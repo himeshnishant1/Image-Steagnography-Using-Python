@@ -340,7 +340,7 @@ class Encoder_bcps:
         sub = ''
         for m in range(len(imagefilename)):
             if imagefilename[m] == '.' and imagefilename[m+1:len(imagefilename)] == 'png':
-                steagnoimagefilename = sub + "_steagno.png"
+                steagnoimagefilename = sub + "_stegano_BCPS.png"
                 break
             else:
                 sub += imagefilename[m]
