@@ -109,7 +109,7 @@ class Toplevel1:
 
         self.TLabel_input = ttk.Label(self.TFrame_input)
         self.TLabel_input.place(relx=0.443, rely=0.02, height=50, width=90)
-        self.TLabel_input.configure(background="#d9d9d9")
+        #self.TLabel_input.configure(background="#d9d9d9")
         self.TLabel_input.configure(foreground="#000000")
         self.TLabel_input.configure(font=font12)
         self.TLabel_input.configure(relief="flat")
@@ -130,7 +130,7 @@ class Toplevel1:
         self.Labelframe_key.configure(relief='groove')
         self.Labelframe_key.configure(foreground="black")
         self.Labelframe_key.configure(text='''Key''')
-        self.Labelframe_key.configure(background="#d9d9d9")
+        #self.Labelframe_key.configure(background="#d9d9d9")
 
         self.TEntry_key = ttk.Entry(self.Labelframe_key)
         self.TEntry_key.place(relx=0.133, rely=0.4, relheight=0.347
@@ -151,7 +151,7 @@ class Toplevel1:
         self.Labelframe_open_image.configure(relief='groove')
         self.Labelframe_open_image.configure(foreground="black")
         self.Labelframe_open_image.configure(text='''Browse Image''')
-        self.Labelframe_open_image.configure(background="#d9d9d9")
+        #elf.Labelframe_open_image.configure(background="#d9d9d9")
 
         self.TButton_open_image = ttk.Button(self.Labelframe_open_image)
         self.TButton_open_image.place(relx=0.133, rely=0.4, height=30, width=101
@@ -193,7 +193,7 @@ class Toplevel1:
 
         self.TLabel_message = ttk.Label(self.TFrame_main)
         self.TLabel_message.place(relx=0.66, rely=0.015, height=44, width=177)
-        self.TLabel_message.configure(background="#d9d9d9")
+        #self.TLabel_message.configure(background="#d9d9d9")
         self.TLabel_message.configure(foreground="#000000")
         self.TLabel_message.configure(font=font14)
         self.TLabel_message.configure(relief="flat")
