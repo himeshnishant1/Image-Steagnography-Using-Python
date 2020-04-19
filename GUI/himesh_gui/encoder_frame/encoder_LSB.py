@@ -81,7 +81,6 @@ class Encoder_LSB:
 # Writing Changes to Cover Image and Generating a Steagnographed Image.
     def encoder_module(self, imagefilename, width , height, textfilename, key):
 
-        ct_indic = 0
         progress_window = Tk()
         progress_window.geometry("646x67+685+189")
         progress_window.minsize(148, 1)
@@ -167,12 +166,12 @@ class Encoder_LSB:
 
                 else:
                     break
- 
+
         steagnoimagefilename = ''
         sub = ''
         for m in range(len(imagefilename)):
             if imagefilename[m] == '.' and imagefilename[m+1:len(imagefilename)] == 'png':
-                steagnoimagefilename = sub + "_steagno.png"
+                steagnoimagefilename = sub + "_stegano_LSB.png"
                 break
             else:
                 sub += imagefilename[m]
