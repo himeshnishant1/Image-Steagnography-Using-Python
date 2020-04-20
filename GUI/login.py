@@ -8,6 +8,7 @@ import datetime
 def main():
     root = Tk()
     app = Window1(root)
+    root.mainloop()
 
 class Window1:
     def __init__(self,master):
@@ -32,6 +33,7 @@ class Window1:
         self.btnlogin.grid(row=3, column=1)
         self.btnlogin = Button(self.frame, text='Exit', width=17, command=self.exit())
         self.btnlogin.grid(row=3, column=3)
+        
 
         def new_window(self):
             self.new_window = Toplevel(self.master)
