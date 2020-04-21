@@ -18,9 +18,11 @@ class Toplevel1:
         messagebox.showinfo("About Us",'himeshnishnishant1@gmail.com')
 
     def run_encoder(self):
+        self.top.destroy()
         encode()
     
     def run_decoder(self):
+        self.top.destroy()
         decode()
 
     def __init__(self):
