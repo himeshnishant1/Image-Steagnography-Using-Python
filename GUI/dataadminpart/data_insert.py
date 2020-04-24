@@ -1,9 +1,17 @@
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-import data_insert_support
+from database import Database
 
 class toplevel1:
+
+    def insert_data(self):
+        conn = Database()
+        name = self.Entry1.get()
+        email = self.Entry1_4.get()
+        password = self.Entry1_5.get()
+        conn.add(name, email, password)
+
     def __init__(self):
 
         self.top = tk.Tk()
@@ -18,7 +26,7 @@ class toplevel1:
         self.top.geometry("600x450+650+150")
         self.top.minsize(152, 1)
         self.top.maxsize(1924, 1055)
-        self.top.resizable(1, 1)
+        self.top.resizable(0, 0)
         self.top.title("New self.toplevel")
         self.top.configure(background="#d9d9d9")
 
@@ -101,6 +109,7 @@ class toplevel1:
         self.Button1.configure(highlightcolor="black")
         self.Button1.configure(pady="0")
         self.Button1.configure(text='''INSERT''')
+        self.Button1.configure(command = self.insert_data)
 
         self.top.mainloop()
 

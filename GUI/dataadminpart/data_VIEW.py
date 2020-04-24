@@ -1,9 +1,24 @@
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-import data_VIEW_support
+from database import Database
 
 class toplevel1:
+
+    def insert_data(self):
+        conn = Database()
+        data = conn.view()
+        name = []
+        email = []
+        password = []
+        for record in data:
+            name.append(record[0])
+            email.append(record[1])
+            password.append(record[2])
+        
+        for i in range(len(name)):
+            self.Text1.insert(tk.END,str("\nname = "+str(name[i])+"\nemail = "+str(email[i])+"\npassword = "+str(password[i])+"\n"))            
+
     def __init__(self):
         
         self.top = tk.Tk()
@@ -27,7 +42,7 @@ class toplevel1:
         self.top.geometry("600x450+650+150")
         self.top.minsize(152, 1)
         self.top.maxsize(1924, 1055)
-        self.top.resizable(1, 1)
+        self.top.resizable(0, 0)
         self.top.title("New self.toplevel")
         self.top.configure(background="#d9d9d9")
 
@@ -44,6 +59,7 @@ class toplevel1:
         self.TButton1.place(relx=0.117, rely=0.2, height=51, width=479)
         self.TButton1.configure(takefocus="")
         self.TButton1.configure(text='''SHOW''')
+        self.TButton1.configure(command = self.insert_data)
 
         self.Text1 = tk.Text(self.top)
         self.Text1.place(relx=0.1, rely=0.378, relheight=0.596, relwidth=0.857)

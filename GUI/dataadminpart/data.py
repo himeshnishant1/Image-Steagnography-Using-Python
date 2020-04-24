@@ -1,9 +1,20 @@
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-from data_insert 
+from data_insert import toplevel1 as insert
+from data_VIEW import toplevel1 as view
 
 class toplevel1:
+
+    def exit(self):
+        exit()
+
+    def open_data_insert(self):
+        insert()
+        
+    def open_data_view(self):
+        view()
+
     def __init__(self):
 
         self.top = tk.Tk()
@@ -18,7 +29,7 @@ class toplevel1:
         self.top.geometry("739x616+650+150")
         self.top.minsize(152, 1)
         self.top.maxsize(1924, 1055)
-        self.top.resizable(1, 1)
+        self.top.resizable(0, 0)
         self.top.title("New self.toplevel")
         self.top.configure(background="#d9d9d9")
         self.top.configure(highlightbackground="#d9d9d9")
@@ -89,6 +100,7 @@ class toplevel1:
         self.Button1.configure(highlightcolor="black")
         self.Button1.configure(pady="0")
         self.Button1.configure(text='''Show''')
+        self.Button1.configure(command = self.open_data_insert)
 
 
         self.Button2 = tk.Button(self.Canvas1)
@@ -102,6 +114,7 @@ class toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Show''')
+        self.Button2.configure(command = self.open_data_view)
 
         self.Button3 = tk.Button(self.Canvas1)
         self.Button3.place(relx=0.605, rely=0.579, height=35, width=90)
@@ -114,6 +127,7 @@ class toplevel1:
         self.Button3.configure(highlightcolor="black")
         self.Button3.configure(pady="0")
         self.Button3.configure(text='''Exit''')
+        self.Button3.configure(command = self.exit)
 
         self.menubar = tk.Menu(self.top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
         self.top.configure(menu = self.menubar)
