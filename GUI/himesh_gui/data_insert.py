@@ -8,8 +8,8 @@ class toplevel1:
     def insert_data(self):
         conn = Database()
         name = self.Entry1.get()
-        email = self.Entry1_4.get()
-        password = self.Entry1_5.get()
+        email = self.Entry1_5.get()
+        password = self.Entry1_4.get()
         conn.add(name, email, password)
 
     def __init__(self):
