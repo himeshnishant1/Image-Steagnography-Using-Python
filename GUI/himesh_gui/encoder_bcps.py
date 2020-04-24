@@ -1,125 +1,11 @@
-import numpy as np
-import cv2
-from tkinter import Tk
-from tkinter import ttk
+# Importing Packages
+import numpy as np # For Mathematical funnctions.
+import cv2 # OpenCV.
+from tkinter import Tk # for GUI Toolkit.
+from tkinter import ttk # for Advanced Toolkt.
+from perform_fun import perform # Self created package for common functions.
 
 class Encoder_bcps:
-    # XOR operation for our data 
-    def XOR(self, data,key):
-        data = str(data)
-        #print("data ",data)
-        key = str(key)
-        #print("key ",key)
-        enc_data = ''
-        for ext_data in range(len(data)):
-            if data[ext_data] == '0' and key[ext_data] == '0':
-                enc_data = enc_data + '0'
-            elif data[ext_data] == '0' and key[ext_data] == '1':
-                enc_data = enc_data + '1'
-            elif data[ext_data] == '1' and key[ext_data] == '0':
-                enc_data = enc_data + '1'
-            elif data[ext_data] == '1' and key[ext_data] == '1':
-                enc_data = enc_data + '0'
-        return enc_data
-
-    # XOR operation
-    def XOR1(self, h,w,d1,d2):
-        enc_data = np.zeros((h,w,1),np.uint8)
-        for ext_data in range(h):
-            for ext_dataj in range(w):
-                if (int(d1[ext_data,ext_dataj]) == 0) and (int(d2[ext_data,ext_dataj]) == 0):
-                    enc_data[ext_data,ext_dataj] =  0
-                elif (int(d1[ext_data,ext_dataj]) == 0) and (int(d2[ext_data,ext_dataj]) == 1):
-                    enc_data[ext_data,ext_dataj] =  1
-                elif (int(d1[ext_data,ext_dataj]) == 1) and (int(d2[ext_data,ext_dataj]) == 0):
-                    enc_data[ext_data,ext_dataj] =  1
-                elif (int(d1[ext_data,ext_dataj]) == 1) and (int(d2[ext_data,ext_dataj]) == 1):
-                    enc_data[ext_data,ext_dataj] =  0
-        return enc_data
-
-    # To calculate the complexity of a 8*8 block of binary image
-    def alpha1(self, h,w,b):
-        x = 0
-        count = 0
-        change = 0
-        for j in range(h):
-            for k in range(w):
-                if j == 0 and k == 0:
-                    count = 0
-                    change = int(b[j,k])
-                else:
-                    if change != int(b[j,k]):
-                        count = count + 1
-                        change = int(b[j,k])
-        x = count/(h*w-1)
-        return x      
-
-    # To conjugate a block of binary image
-    def conjugate(self, h,w,b_ex):  
-        wc = np.zeros((h,w,1),np.uint8)
-        for i in range(8):
-            for j in range(8):
-                if int(j%2) != 0:
-                    wc[i,j] = 1
-
-        b_ex_tmp = self.XOR1(self,h,w,wc,b_ex)
-        return b_ex_tmp
-
-    # Decimal to Binary convertor
-    def dec2bin(self, dec):
-        inverse = ''
-        binary = ''
-        while dec != 0:
-            inverse = inverse + str( int(dec % 2) )
-            dec = int(dec / 2)
-        if len(inverse) <= 8:
-            size = len(inverse)
-            for i in range(8-size):
-                inverse = inverse + '0'
-        for i in range(len(inverse)-1,-1,-1):
-            binary = binary + str(inverse[i])
-        return binary
-
-    # Binary to Decimal convertor
-    def bin2dec(self, binar):
-        binar = int(binar)
-        dec = 0
-        i = 0
-        while binar > 0:
-            dec = dec + (int(binar%10)*np.power(2,i))
-            i = i+1
-            binar = int(binar/10)
-        return dec
-
-    # Secret Message into ASCII and ASCII into Binary format
-    def get_cooked_data(self,secret_message, key):
-        binary = ''
-        count = 0
-        tmp = ''
-        if key.isnumeric() and (len(key) == 4):
-            sum1 = 0
-            for i in range(len(key)):
-                sum1 = sum1 + ord(key[i])
-            key = str(self.dec2bin(self,sum1))
-            print("Converting Message to Binary and encrypting...")
-            for pos in range(len(secret_message)):
-                if ord(secret_message[pos]) <= 255:
-                    if count < 8:
-                        tmp = str(self.XOR(self,self.dec2bin(self,ord(secret_message[pos])),key))# coverting Secret code into ASCII and ASCII into Encrypted Binary.
-                        binary = binary + tmp
-                    else:
-                        tmp = count = 0
-            print("\nMessage Conversion Successfull.\n")
-            len_b = len(binary)
-            if (len_b-(int(len_b/64)*64)) != 0:
-                extra = len_b-(int(len_b/64)*64)
-                for pos in range(64-extra):
-                    binary = binary + '0'
-                
-            return binary
-        else:
-            exit()
-
 
     #encoder Module
     def encoder_module(self, imagefilename, width , height, textfilename, key):
@@ -144,16 +30,13 @@ class Encoder_bcps:
 
         TProgressbar1['maximum'] = 3*8
 
-        binary = self.get_cooked_data(self, textfilename, key)
-        print(len(binary))
+        binary = perform.get_cooked_data(self, textfilename, key)
 
         img_b = np.zeros((height,width,1),np.uint8)
         img_g = np.zeros((height,width,1),np.uint8)
         img_r = np.zeros((height,width,1),np.uint8)
 
         sub_img = np.zeros((height,width,1),np.uint8)
-
-        #tp1.TProgressbar['maximum'] = 8*channels*height
 
         bit_coded = 0
         for color in range(channels):
@@ -195,7 +78,7 @@ class Encoder_bcps:
                 for m in range(height):
 
                     for n in range(width):
-                        shape = str(self.dec2bin(self,sub_img[m,n]))
+                        shape = str(perform.dec2bin(self,sub_img[m,n]))
                         if indic == 0:
                             img_sub1[m,n] = int(shape[indic])
                         elif indic == 1:
@@ -219,7 +102,7 @@ class Encoder_bcps:
                     for m in range(0,meta_loc,8):
                         for n in range(0,int(width/8)*8,8):
                             
-                            oalpha = self.alpha1(self,8,8,bt[m:m+8,n:n+8])
+                            oalpha = perform.alpha1(self,8,8,bt[m:m+8,n:n+8])
                             mn.append(oalpha)
                             
                     mean1 = np.mean(mn)
@@ -233,7 +116,7 @@ class Encoder_bcps:
                             if bit_coded < len(binary):
                                 count1 = bit_coded
 
-                                oalpha = self.alpha1(self,8,8,bt[m:m+8,n:n+8])
+                                oalpha = perform.alpha1(self,8,8,bt[m:m+8,n:n+8])
                                 bi = np.zeros((8,8,1),np.uint8)
                                 for i in range(8):
                                     for j in range(8):
@@ -241,12 +124,12 @@ class Encoder_bcps:
                                             bi[i,j] = int(binary[count1])
                                             count1 = count1 + 1
 
-                                dalpha = self.alpha1(self,8,8,bi)
+                                dalpha = perform.alpha1(self,8,8,bi)
                                 if oalpha > (mean1-0*std1):
 
                                     if dalpha <= (mean1-0*std1):
 
-                                        b_con = self.conjugate(self,8,8,bi) 
+                                        b_con = perform.conjugate(self,8,8,bi) 
                                         bt[m:m+8,n:n+8] = b_con
                                         patched_loc = patched_loc + "1"
                                         bit_coded = bit_coded + 64
@@ -267,7 +150,7 @@ class Encoder_bcps:
                     tmp_patch_loc = ''
                         
                     for a in range(0,len(patched_loc),8):
-                        tmp_patch_loc = tmp_patch_loc + str(self.bin2dec(self,patched_loc[a:a+8]))+"@"
+                        tmp_patch_loc = tmp_patch_loc + str(perform.bin2dec(self,patched_loc[a:a+8]))+"@"
                         
                     patched_loc = tmp_patch_loc
                         
@@ -281,7 +164,7 @@ class Encoder_bcps:
                     tmp_meta = str(meta_loc)+" "+str(mean1)+" "+str(std1)+" "+str(len(binary))+" "+patched_loc
                     
                     for m in range(len(tmp_meta)):
-                        meta_data = meta_data + str(self.dec2bin(self,ord(tmp_meta[m])))
+                        meta_data = meta_data + str(perform.dec2bin(self,ord(tmp_meta[m])))
 
                     meta_ct = 0    
                     for m in range(meta_loc+1,height):
@@ -314,7 +197,7 @@ class Encoder_bcps:
             for m in range(height):
                 for n in range(width):
                     stegano = str(int(img_sub1[m,n]))+str(int(img_sub2[m,n]))+str(int(img_sub3[m,n]))+str(int(img_sub4[m,n]))+str(int(img_sub5[m,n]))+str(int(img_sub6[m,n]))+str(int(img_sub7[m,n]))+str(int(img_sub8[m,n]))
-                    img_channel[m,n] = np.uint8(self.bin2dec(self,stegano))
+                    img_channel[m,n] = np.uint8(perform.bin2dec(self,stegano))
                     
             if color == 0:
                 img_b = img_channel 
@@ -330,11 +213,6 @@ class Encoder_bcps:
             for n in range(width):
                 stegano_img[m,n] = img_b[m,n],img_g[m,n],img_r[m,n]
 
-        print(bit_coded," were coded")
-        #cv2.imshow("cover image",img)
-        #cv2.imshow("stegano image",stegano_img)
-        #cv2.waitKey(0)
-        #cv2.destroyAllWindows()
         progress_window.destroy()
         steagnoimagefilename = ''
         sub = ''

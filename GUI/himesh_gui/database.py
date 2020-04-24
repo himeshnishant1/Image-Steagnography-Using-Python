@@ -10,6 +10,4 @@ class Database:
             result = self.db.execute(query)
             self.db.commit()
             return result
-        except Exception as e:
-            print(e)
 
