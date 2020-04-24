@@ -2,39 +2,25 @@ import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
-from database import Database
-from Home import Toplevel1 as home
-from admin_login import Toplevel1 as admin_log
+from Admin_pannel import toplevel1 as admin
 
 class Toplevel1:
 
-    def admin_login(self):
+    def jump_admin(self):
         self.top.destroy()
-        admin_log()
-
-    def jump_home(self):
-        self.top.destroy()
-        home()
+        admin()
 
     def Cancel_login(self):
         msg = messagebox.askyesno('Login page','Are you sure, you want to cancel login?')
         if (msg):
             exit()
     
-    def login_usr(self):
-        conn = Database()
+    def login_admin(self):
         name = self.Entry_userid.get()
         password = self.Entry_passwd.get()
-        query = '''select * from detail where name = "'''+name+'''" and pwd = "'''+password+'''";'''
-        data = conn.run(query)
-        nm = ''
-        pw = ''
-        for i in data:
-            nm = i[0]
-            pw = i[2]
 
-        if (nm == name) and (pw == password):
-            self.jump_home()
+        if (name == "iamadmin") and (password == "testqwerty123"):
+            self.jump_admin()
         else:
             self.Label_warning['text'] = "invalid username or password!"
 
@@ -68,7 +54,7 @@ class Toplevel1:
         self.Button_login.configure(highlightcolor="black")
         self.Button_login.configure(pady="0")
         self.Button_login.configure(text='''Login''')
-        self.Button_login.configure(command = self.login_usr)
+        self.Button_login.configure(command = self.login_admin)
 
         self.Button_cancel = tk.Button(self.top)
         self.Button_cancel.place(relx=0.55, rely=0.667, height=43, width=86)
@@ -82,19 +68,6 @@ class Toplevel1:
         self.Button_cancel.configure(pady="0")
         self.Button_cancel.configure(text='''Cancel''')
         self.Button_cancel.configure(command=self.Cancel_login)
-
-        self.Button_admin = tk.Button(self.top)
-        self.Button_admin.place(relx=0.83, rely=0.9, height=43, width=98)
-        self.Button_admin.configure(activeforeground="white")
-        self.Button_admin.configure(activeforeground="#fcfcfc")
-        self.Button_admin.configure(disabledforeground="#a3a3a3")
-        self.Button_admin.configure(font=font10)
-        self.Button_admin.configure(foreground="#000000")
-        self.Button_admin.configure(highlightbackground="#d9d9d9")
-        self.Button_admin.configure(highlightcolor="black")
-        self.Button_admin.configure(pady="0")
-        self.Button_admin.configure(text='''Admin Login''')
-        self.Button_admin.configure(command=self.admin_login)
 
         self.Entry_userid = tk.Entry(self.top)
         self.Entry_userid.place(relx=0.333, rely=0.378, height=34, relwidth=0.44)
@@ -148,6 +121,3 @@ class Toplevel1:
         self.Label_warning.configure(font=font10)
 
         self.top.mainloop()
-
-if __name__ == "__main__":
-    Toplevel1()
