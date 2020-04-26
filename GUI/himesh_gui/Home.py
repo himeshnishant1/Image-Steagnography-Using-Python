@@ -1,11 +1,11 @@
 import sys
 from tkinter import messagebox
-from encoder import Toplevel1 as encode
-from decoder import Toplevel1 as decode
+from encoder import ENCODER as encode
+from decoder import DECODER as decode
 import tkinter as tk
 import tkinter.ttk as ttk
 
-class Toplevel1:
+class HOME:
 
     def tell_about_me(self):
         messagebox.showinfo("About Us",'himeshnishnishant1@gmail.com')

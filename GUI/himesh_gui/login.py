@@ -3,10 +3,10 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
 from database import Database
-from Home import Toplevel1 as home
-from admin_login import Toplevel1 as admin_log
+from Home import HOME as home
+from admin_login import ADMIN_LOGIN as admin_log
 
-class Toplevel1:
+class LOGIN:
 
     def admin_login(self):
         self.top.destroy()
@@ -150,4 +150,4 @@ class Toplevel1:
         self.top.mainloop()
 
 if __name__ == "__main__":
-    Toplevel1()
+    LOGIN()

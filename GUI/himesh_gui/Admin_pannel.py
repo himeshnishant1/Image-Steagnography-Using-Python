@@ -1,10 +1,10 @@
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-from data_insert import toplevel1 as insert
-from data_VIEW import toplevel1 as view
+from data_insert import DATA_INSERT as insert
+from data_VIEW import DATA_VIEW as view
 
-class toplevel1:
+class ADMIN_PANNEL:
 
     def exit(self):
         exit()
@@ -30,7 +30,7 @@ class toplevel1:
         self.top.minsize(152, 1)
         self.top.maxsize(1924, 1055)
         self.top.resizable(0, 0)
-        self.top.title("New self.toplevel")
+        self.top.title("ADMIN PANNEL")
         self.top.configure(background="#d9d9d9")
         self.top.configure(highlightbackground="#d9d9d9")
         self.top.configure(highlightcolor="black")
@@ -146,11 +146,4 @@ class toplevel1:
         Popupmenu1.configure(font="-family {Segoe UI} -size 10")
         Popupmenu1.configure(foreground="black")
         Popupmenu1.post(event.x_root, event.y_root)
-
-if __name__ == '__main__':
-    toplevel1()
-
-
-
-
 

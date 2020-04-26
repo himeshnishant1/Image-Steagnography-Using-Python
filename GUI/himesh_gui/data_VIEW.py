@@ -3,9 +3,9 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from database import Database
 
-class toplevel1:
+class DATA_VIEW:
 
-    def insert_data(self):
+    def show_data(self):
         conn = Database()
         data = conn.view()
         name = []
@@ -43,7 +43,7 @@ class toplevel1:
         self.top.minsize(152, 1)
         self.top.maxsize(1924, 1055)
         self.top.resizable(0, 0)
-        self.top.title("New self.toplevel")
+        self.top.title("DATA VIEW")
         self.top.configure(background="#d9d9d9")
 
         self.Label1 = tk.Label(self.top)
@@ -59,7 +59,7 @@ class toplevel1:
         self.TButton1.place(relx=0.117, rely=0.2, height=51, width=479)
         self.TButton1.configure(takefocus="")
         self.TButton1.configure(text='''SHOW''')
-        self.TButton1.configure(command = self.insert_data)
+        self.TButton1.configure(command = self.show_data)
 
         self.Text1 = tk.Text(self.top)
         self.Text1.place(relx=0.1, rely=0.378, relheight=0.596, relwidth=0.857)
@@ -87,9 +87,6 @@ class toplevel1:
         Popupmenu1.configure(font="-family {Segoe UI} -size 10")
         Popupmenu1.configure(foreground="black")
         Popupmenu1.post(event.x_root, event.y_root)
-
-if __name__ == '__main__':
-    toplevel1()
 
 
 

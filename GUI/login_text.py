@@ -3,7 +3,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
 
-class Toplevel1:
+class LOGIN_TEXT:
 
     def __init__(self):
 
