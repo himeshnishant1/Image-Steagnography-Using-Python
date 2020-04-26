@@ -5,7 +5,7 @@ from tkinter import Tk # for GUI Toolkit.
 from tkinter import ttk # for Advanced Toolkt.
 from perform_fun import perform # Self created package for common functions.
 
-class Encoder_bcps:
+class Encoder_bpcs:
 
     #encoder Module
     def encoder_module(self, imagefilename, width , height, textfilename, key):
@@ -218,7 +218,7 @@ class Encoder_bcps:
         sub = ''
         for m in range(len(imagefilename)):
             if imagefilename[m] == '.' and imagefilename[m+1:len(imagefilename)] == 'png':
-                steagnoimagefilename = sub + "_stegano_BCPS.png"
+                steagnoimagefilename = sub + "_stegano_BPCS.png"
                 break
             else:
                 sub += imagefilename[m]
