@@ -2,7 +2,7 @@ import sys
 import os
 from PIL import Image, ImageTk
 from tkinter import filedialog
-from decoder_BCPS import Decoder_BCPS
+from decoder_BPCS import Decoder_BPCS
 from decoder_LSB import Decoder_LSB
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -14,11 +14,11 @@ class Toplevel1:
         if self.choice == 1:
             self.exploit_for_LSB()
         elif self.choice == 2:
-            self.exploit_for_BCPS()
+            self.exploit_for_BPCS()
 
-    def exploit_for_BCPS(self):
+    def exploit_for_BPCS(self):
     
-        self.secret_message = Decoder_BCPS.decoder_module(Decoder_BCPS,self.imagefilename, self.input_image_width, self.input_image_height
+        self.secret_message = Decoder_BPCS.decoder_module(Decoder_BPCS,self.imagefilename, self.input_image_width, self.input_image_height
         ,self.TEntry_key.get())
 
         self.Scrolledtext_message.insert(tk.INSERT,self.secret_message)
@@ -163,12 +163,12 @@ class Toplevel1:
         self.TRadiobutton_LSB.configure(text='''LSB(Lowest Significant Bit)''')
         self.TRadiobutton_LSB.configure(value = 1)
 
-        self.TRadiobutton_BCPS = ttk.Radiobutton(self.TFrame_functions)
-        self.TRadiobutton_BCPS.place(relx=0.518, rely=0.71, relwidth=0.459
+        self.TRadiobutton_BPCS = ttk.Radiobutton(self.TFrame_functions)
+        self.TRadiobutton_BPCS.place(relx=0.518, rely=0.71, relwidth=0.459
                 , relheight=0.0, height=26)
-        self.TRadiobutton_BCPS.configure(variable=self.var_technique)
-        self.TRadiobutton_BCPS.configure(text='''BCPS(Bit-Plane Complexity Segmentation)''')
-        self.TRadiobutton_BCPS.configure(value = 2)
+        self.TRadiobutton_BPCS.configure(variable=self.var_technique)
+        self.TRadiobutton_BPCS.configure(text='''BPCS(Bit-Plane Complexity Segmentation)''')
+        self.TRadiobutton_BPCS.configure(value = 2)
 
         self.Scrolledtext_message = ScrolledText(self.TFrame_main)
         self.Scrolledtext_message.place(relx=0.472, rely=0.088, relheight=0.902

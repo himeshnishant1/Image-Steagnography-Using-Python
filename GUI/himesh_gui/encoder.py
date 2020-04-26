@@ -1,10 +1,10 @@
-#import sys
+import sys
 import os
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import filedialog
 from PIL import Image, ImageTk
-from encoder_bcps import Encoder_bcps
+from encoder_bpcs import Encoder_bpcs
 from encoder_LSB import Encoder_LSB
 import matplotlib.pyplot as plt
 import cv2
@@ -89,11 +89,11 @@ class Toplevel1:
         if self.choice == 1:
             self.exploit_for_LSB()
         elif self.choice == 2:
-            self.exploit_for_BCPS()
+            self.exploit_for_BPCS()
 
-    def exploit_for_BCPS(self):
+    def exploit_for_BPCS(self):
 
-        self.steganoimagefilename = Encoder_bcps.encoder_module(Encoder_bcps,self.imagefilename, self.input_image_width, self.input_image_height
+        self.steganoimagefilename = Encoder_bpcs.encoder_module(Encoder_bpcs,self.imagefilename, self.input_image_width, self.input_image_height
         , self.Scrolledtext_secretmsg.get("1.0", tk.END),self.Entry_key.get())
 
         self.histogram_output_image()
@@ -340,7 +340,7 @@ class Toplevel1:
         self.R1.place(relx=0.680, rely=0.560, relwidth=0.110
                 , relheight=0.0, height = 22)
 
-        self.R2 = tk.Radiobutton(self.top, text="BCPS(Bit-Plane Complexity Segmentation)", variable=self.var_technique, value=2,
+        self.R2 = tk.Radiobutton(self.top, text="BPCS(Bit-Plane Complexity Segmentation)", variable=self.var_technique, value=2,
                         command= "")
         self.R2.place(relx=0.800, rely=0.560, relheight=0.0
                 , relwidth=0.165, height = 22)

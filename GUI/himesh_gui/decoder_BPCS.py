@@ -5,7 +5,7 @@ from tkinter import Tk # for GUI Toolkit.
 from tkinter import ttk # for Advanced Toolkt.
 from perform_fun import perform # Self created package for common functions.
 
-class Decoder_BCPS:
+class Decoder_BPCS:
 
     #decoder module
     def decoder_module(self, imagefilename, width , height, key):
