@@ -7,7 +7,7 @@ from decoder_LSB import Decoder_LSB
 import tkinter as tk
 import tkinter.ttk as ttk
 
-class Toplevel1:
+class DECODER:
 
     def var_chioce(self):
         self.choice = self.var_technique.get()

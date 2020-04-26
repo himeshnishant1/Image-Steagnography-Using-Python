@@ -3,7 +3,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from database import Database
 
-class toplevel1:
+class DATA_INSERT:
 
     def insert_data(self):
         conn = Database()
@@ -27,7 +27,7 @@ class toplevel1:
         self.top.minsize(152, 1)
         self.top.maxsize(1924, 1055)
         self.top.resizable(0, 0)
-        self.top.title("New self.toplevel")
+        self.top.title("DATA INSERTION")
         self.top.configure(background="#d9d9d9")
 
         self.Label1 = tk.Label(self.top)
@@ -125,9 +125,6 @@ class toplevel1:
         Popupmenu1.configure(font="-family {Segoe UI} -size 10")
         Popupmenu1.configure(foreground="black")
         Popupmenu1.post(event.x_root, event.y_root)
-
-if __name__ == '__main__':
-    toplevel1()
 
 
 

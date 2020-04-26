@@ -2,9 +2,9 @@ import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
-from Admin_pannel import toplevel1 as admin
+from Admin_pannel import ADMIN_PANNEL as admin
 
-class Toplevel1:
+class ADMIN_LOGIN:
 
     def jump_admin(self):
         self.top.destroy()

@@ -9,7 +9,7 @@ from encoder_LSB import Encoder_LSB
 import matplotlib.pyplot as plt
 import cv2
 
-class Toplevel1:
+class ENCODER:
 
     def histogram_input_image(self):
 
