@@ -5,7 +5,7 @@ from tkinter import Tk # for GUI Toolkit.
 from tkinter import ttk # for Advanced Toolkt.
 from perform_fun import perform # Self created package for common functions.
 
-class Encoder_LSB:
+class Encoder_LSB():
         
 # Writing Changes to Cover Image and Generating a Steagnographed Image.
     def encoder_module(self, imagefilename, width , height, textfilename, key):
