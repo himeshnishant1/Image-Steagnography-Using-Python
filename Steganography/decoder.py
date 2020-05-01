@@ -72,9 +72,7 @@ class DECODER:
         self.TFrame_main = ttk.Frame(self.top)
         self.TFrame_main.place(relx=0.007, rely=0.014, relheight=0.979
                 , relwidth=0.989)
-        self.TFrame_main.configure(relief='groove')
-        self.TFrame_main.configure(borderwidth="2")
-        self.TFrame_main.configure(relief="groove")
+        self.TFrame_main.configure(relief='groove', borderwidth="2")
 
         self.TSeparator1 = ttk.Separator(self.TFrame_main)
         self.TSeparator1.place(relx=0.466, rely=0.009, relheight=0.981)
@@ -83,18 +81,12 @@ class DECODER:
         self.TFrame_input = ttk.Frame(self.TFrame_main)
         self.TFrame_input.place(relx=0.007, rely=0.015, relheight=0.724
                 , relwidth=0.456)
-        self.TFrame_input.configure(relief='groove')
-        self.TFrame_input.configure(borderwidth="2")
-        self.TFrame_input.configure(relief="groove")
+        self.TFrame_input.configure(relief='groove', borderwidth="2")
 
         self.Canvas_input = tk.Canvas(self.TFrame_input)
         self.Canvas_input.place(relx=0.133, rely=0.161, relheight=0.806
                 , relwidth=0.74)
-        self.Canvas_input.configure(background="#d9d9d9")
-        self.Canvas_input.configure(borderwidth="2")
-        self.Canvas_input.configure(insertbackground="black")
-        self.Canvas_input.configure(relief="ridge")
-        self.Canvas_input.configure(selectbackground="#c4c4c4")
+        self.Canvas_input.configure(background="#d9d9d9", borderwidth="2", insertbackground="black", relief="ridge", selectbackground="#c4c4c4")
         self.Canvas_input.configure(selectforeground="black")
 
         self.TSeparator_input = ttk.Separator(self.TFrame_input)
@@ -103,96 +95,55 @@ class DECODER:
         self.TLabel_input = ttk.Label(self.TFrame_input)
         self.TLabel_input.place(relx=0.443, rely=0.02, height=50, width=90)
         #self.TLabel_input.configure(background="#d9d9d9")
-        self.TLabel_input.configure(foreground="#000000")
-        self.TLabel_input.configure(font=font12)
-        self.TLabel_input.configure(relief="flat")
-        self.TLabel_input.configure(anchor='w')
-        self.TLabel_input.configure(justify='center')
-        self.TLabel_input.configure(text='''Input''')
+        self.TLabel_input.configure(foreground="#000000", font=font12, relief="flat", anchor='w', justify='center', text='''Input''')
 
         self.TFrame_functions = ttk.Frame(self.TFrame_main)
         self.TFrame_functions.place(relx=0.007, rely=0.759, relheight=0.226
                 , relwidth=0.456)
-        self.TFrame_functions.configure(relief='groove')
-        self.TFrame_functions.configure(borderwidth="2")
-        self.TFrame_functions.configure(relief="groove")
+        self.TFrame_functions.configure(relief='groove', borderwidth="2")
 
         self.Labelframe_key = tk.LabelFrame(self.TFrame_functions)
         self.Labelframe_key.place(relx=0.015, rely=0.065, relheight=0.484
                 , relwidth=0.222)
-        self.Labelframe_key.configure(relief='groove')
-        self.Labelframe_key.configure(foreground="black")
-        self.Labelframe_key.configure(text='''Key''')
-        #self.Labelframe_key.configure(background="#d9d9d9")
+        self.Labelframe_key.configure(relief='groove', foreground="black", text='''Key''')
 
         self.TEntry_key = ttk.Entry(self.Labelframe_key)
         self.TEntry_key.place(relx=0.133, rely=0.4, relheight=0.347
                 , relwidth=0.773, bordermode='ignore')
-        self.TEntry_key.configure(takefocus="")
-        self.TEntry_key.configure(cursor="ibeam")
+        self.TEntry_key.configure(takefocus="", cursor="ibeam")
         self.TEntry_key.insert(tk.INSERT,"0000")
 
         self.TButton_start = ttk.Button(self.TFrame_functions)
         self.TButton_start.place(relx=0.355, rely=0.161, height=50, width=118)
-        self.TButton_start.configure(takefocus="")
-        self.TButton_start.configure(text='''START''')
-        self.TButton_start.configure(command = self.var_chioce)
+        self.TButton_start.configure(takefocus="", text='''START''', command = self.var_chioce)
 
         self.Labelframe_open_image = tk.LabelFrame(self.TFrame_functions)
-        self.Labelframe_open_image.place(relx=0.695, rely=0.065, relheight=0.484
-                , relwidth=0.222)
-        self.Labelframe_open_image.configure(relief='groove')
-        self.Labelframe_open_image.configure(foreground="black")
-        self.Labelframe_open_image.configure(text='''Browse Image''')
-        #elf.Labelframe_open_image.configure(background="#d9d9d9")
+        self.Labelframe_open_image.place(relx=0.695, rely=0.065, relheight=0.484, relwidth=0.222)
+        self.Labelframe_open_image.configure(relief='groove', foreground="black", text='''Browse Image''')
 
         self.TButton_open_image = ttk.Button(self.Labelframe_open_image)
-        self.TButton_open_image.place(relx=0.133, rely=0.4, height=30, width=101
-                , bordermode='ignore')
-        self.TButton_open_image.configure(takefocus="")
-        self.TButton_open_image.configure(text='''Open Image...''')
-        self.TButton_open_image.configure(command = self.FileDialogForInputImage)
+        self.TButton_open_image.place(relx=0.133, rely=0.4, height=30, width=101, bordermode='ignore')
+        self.TButton_open_image.configure(takefocus="", text='''Open Image...''', command = self.FileDialogForInputImage)
 
         self.var_technique = tk.IntVar()
-        self.style.map('TRadiobutton',background=
-            [('selected', _bgcolor), ('active', _ana2color)])
+        self.style.map('TRadiobutton',background = [('selected', _bgcolor), ('active', _ana2color)])
         self.TRadiobutton_LSB = ttk.Radiobutton(self.TFrame_functions)
-        self.TRadiobutton_LSB.place(relx=0.104, rely=0.71, relwidth=0.297
-                , relheight=0.0, height=26)
-        self.TRadiobutton_LSB.configure(variable=self.var_technique)
-        self.TRadiobutton_LSB.configure(text='''LSB(Lowest Significant Bit)''')
-        self.TRadiobutton_LSB.configure(value = 1)
+        self.TRadiobutton_LSB.place(relx=0.104, rely=0.71, relwidth=0.297, relheight=0.0, height=26)
+        self.TRadiobutton_LSB.configure(variable=self.var_technique, text='''LSB(Lowest Significant Bit)''', value = 1)
 
         self.TRadiobutton_BPCS = ttk.Radiobutton(self.TFrame_functions)
-        self.TRadiobutton_BPCS.place(relx=0.518, rely=0.71, relwidth=0.459
-                , relheight=0.0, height=26)
-        self.TRadiobutton_BPCS.configure(variable=self.var_technique)
-        self.TRadiobutton_BPCS.configure(text='''BPCS(Bit-Plane Complexity Segmentation)''')
-        self.TRadiobutton_BPCS.configure(value = 2)
+        self.TRadiobutton_BPCS.place(relx=0.518, rely=0.71, relwidth=0.459, relheight=0.0, height=26)
+        self.TRadiobutton_BPCS.configure(variable=self.var_technique, text='''BPCS(Bit-Plane Complexity Segmentation)''', value = 2)
 
         self.Scrolledtext_message = ScrolledText(self.TFrame_main)
-        self.Scrolledtext_message.place(relx=0.472, rely=0.088, relheight=0.902
-                , relwidth=0.526)
-        self.Scrolledtext_message.configure(background="white")
-        self.Scrolledtext_message.configure(font="TkTextFont")
-        self.Scrolledtext_message.configure(foreground="black")
-        self.Scrolledtext_message.configure(highlightbackground="#d9d9d9")
-        self.Scrolledtext_message.configure(highlightcolor="black")
-        self.Scrolledtext_message.configure(insertbackground="black")
-        self.Scrolledtext_message.configure(insertborderwidth="3")
-        self.Scrolledtext_message.configure(selectbackground="#c4c4c4")
-        self.Scrolledtext_message.configure(selectforeground="black")
-        self.Scrolledtext_message.configure(wrap="none")
+        self.Scrolledtext_message.place(relx=0.472, rely=0.088, relheight=0.902, relwidth=0.526)
+        self.Scrolledtext_message.configure(background="white", font="TkTextFont", foreground="black", highlightbackground="#d9d9d9", highlightcolor="black")
+        self.Scrolledtext_message.configure(insertbackground="black", insertborderwidth="3", selectbackground="#c4c4c4", selectforeground="black", wrap="none")
 
         self.TLabel_message = ttk.Label(self.TFrame_main)
         self.TLabel_message.place(relx=0.66, rely=0.015, height=44, width=177)
-        #self.TLabel_message.configure(background="#d9d9d9")
-        self.TLabel_message.configure(foreground="#000000")
-        self.TLabel_message.configure(font=font14)
-        self.TLabel_message.configure(relief="flat")
-        self.TLabel_message.configure(anchor='w')
-        self.TLabel_message.configure(justify='left')
-        self.TLabel_message.configure(text='''Secret Message''')
+        self.TLabel_message.configure(foreground="#000000", font=font14, relief="flat", anchor='w', justify='left',text='''Secret Message''')
+
         self.top.mainloop()
 
 # The following code is added to facilitate the Scrolled widgets you specified.

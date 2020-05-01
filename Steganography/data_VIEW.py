@@ -48,44 +48,25 @@ class DATA_VIEW:
 
         self.Label1 = tk.Label(self.top)
         self.Label1.place(relx=0.083, rely=0.044, height=47, width=523)
-        self.Label1.configure(activebackground="#c0c0c0")
-        self.Label1.configure(activeforeground="#000000")
-        self.Label1.configure(background="#c0c0c0")
-        self.Label1.configure(disabledforeground="#a3a3a3")
-        self.Label1.configure(foreground="#000000")
-        self.Label1.configure(text='''VIEW''')
+        self.Label1.configure(activebackground="#c0c0c0", activeforeground="#000000", background="#c0c0c0", disabledforeground="#a3a3a3")
+        self.Label1.configure(foreground="#000000",text='''VIEW''')
 
         self.TButton1 = ttk.Button(self.top)
         self.TButton1.place(relx=0.117, rely=0.2, height=51, width=479)
-        self.TButton1.configure(takefocus="")
-        self.TButton1.configure(text='''SHOW''')
-        self.TButton1.configure(command = self.show_data)
+        self.TButton1.configure(takefocus="", text='''SHOW''', command = self.show_data)
 
         self.Text1 = tk.Text(self.top)
         self.Text1.place(relx=0.1, rely=0.378, relheight=0.596, relwidth=0.857)
-        self.Text1.configure(background="white")
-        self.Text1.configure(font=font9)
-        self.Text1.configure(foreground="black")
-        self.Text1.configure(highlightbackground="#d9d9d9")
-        self.Text1.configure(highlightcolor="black")
-        self.Text1.configure(insertbackground="black")
-        self.Text1.configure(selectbackground="#c4c4c4")
-        self.Text1.configure(selectforeground="black")
-        self.Text1.configure(wrap="word")
+        self.Text1.configure(background="white", font=font9, foreground="black", highlightbackground="#d9d9d9", highlightcolor="black")
+        self.Text1.configure(insertbackground="black", selectbackground="#c4c4c4", selectforeground="black", wrap="word")
 
         self.top.mainloop()
 
     @staticmethod
     def popup1(event, *args, **kwargs):
         Popupmenu1 = tk.Menu(root, tearoff=0)
-        Popupmenu1.configure(activebackground="#f9f9f9")
-        Popupmenu1.configure(activeborderwidth="1")
-        Popupmenu1.configure(activeforeground="black")
-        Popupmenu1.configure(background="#d9d9d9")
-        Popupmenu1.configure(borderwidth="1")
-        Popupmenu1.configure(disabledforeground="#a3a3a3")
-        Popupmenu1.configure(font="-family {Segoe UI} -size 10")
-        Popupmenu1.configure(foreground="black")
+        Popupmenu1.configure(activebackground="#f9f9f9", activeborderwidth="1",activeforeground="black",background="#d9d9d9", borderwidth="1")
+        Popupmenu1.configure(disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 10", foreground="black")
         Popupmenu1.post(event.x_root, event.y_root)
 
 
