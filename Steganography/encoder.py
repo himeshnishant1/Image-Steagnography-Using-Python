@@ -15,6 +15,8 @@ class ENCODER:
 
         img = Image.open(self.imagefilename)
 
+        img = img.convert('RGB')
+        
         r, g, b = img.split()
 
         r_histo = r.histogram()
