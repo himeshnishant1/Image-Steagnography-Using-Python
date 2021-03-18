@@ -33,3 +33,5 @@ Note: please install all the required libraries like numpy, OpenCV, tkinter, PIL
 
 
 You can suggest any changes and also you can add more algorithims to it if you can.
+
+Contact me: himeshnishant1@gmail.com
