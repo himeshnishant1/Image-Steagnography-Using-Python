@@ -1,4 +1,4 @@
-hello to who is reading this readme file.
+Image Steagnography using Python.
 
 This Project is about steagnography with image using python.
 This is my Final Year Project.
